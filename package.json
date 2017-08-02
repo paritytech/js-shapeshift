@@ -21,10 +21,8 @@
     "Parity",
     "Promise"
   ],
-  "scripts": {
-  },
-  "devDependencies": {
-  },
+  "scripts": {},
+  "devDependencies": {},
   "dependencies": {
     "node-fetch": "~1.6.3"
   }
