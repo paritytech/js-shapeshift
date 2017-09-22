@@ -22,9 +22,7 @@ const isBrowser = typeof self !== 'undefined' && typeof self.window !== 'undefin
 
 if (isBrowser) {
   require('whatwg-fetch');
-}
-
-if (isNode) {
+} else if (isNode) {
   global.fetch = require('node-fetch');
 }
 
