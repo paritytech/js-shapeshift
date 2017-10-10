@@ -1,7 +1,7 @@
 {
   "name": "@parity/shapeshift",
   "description": "The Parity Promise-based library for interfacing with ShapeShift over HTTP",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "main": "index.js",
   "author": "Parity Team <admin@parity.io>",
   "maintainers": [
