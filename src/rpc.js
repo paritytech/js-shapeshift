@@ -1,4 +1,4 @@
-'use strict'; // Copyright 2015-2017 Parity Technologies (UK) Ltd.
+// Copyright 2015-2017 Parity Technologies (UK) Ltd.
 // This file is part of Parity.
 
 // Parity is free software: you can redistribute it and/or modify
@@ -14,54 +14,54 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-var ENDPOINT = 'https://cors.shapeshift.io';
+const ENDPOINT = 'https://cors.shapeshift.io';
 
-function call(method, options) {
-  return fetch(ENDPOINT + '/' + method, options).
-  then(function (response) {
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
+function call (method, options) {
+  return fetch(`${ENDPOINT}/${method}`, options)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
 
-    return response.json();
-  }).
-  then(function (result) {
-    if (result.error) {
-      throw new Error(result.error);
-    }
+      return response.json();
+    })
+    .then((result) => {
+      if (result.error) {
+        throw new Error(result.error);
+      }
 
-    return result;
-  });
+      return result;
+    });
 }
 
 module.exports = function (apiKey) {
-  function get(method) {
+  function get (method) {
     return call(method, {
       method: 'GET',
       headers: {
-        'Accept': 'application/json' } });
-
-
+        'Accept': 'application/json'
+      }
+    });
   }
 
-  function post(method, data) {
-    var params = Object.assign({}, { apiKey: apiKey }, data);
-    var body = JSON.stringify(params);
+  function post (method, data) {
+    const params = Object.assign({}, { apiKey }, data);
+    const body = JSON.stringify(params);
 
     return call(method, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Content-Length': body.length },
-
-      body: body });
-
+        'Content-Length': body.length
+      },
+      body
+    });
   }
 
   return {
-    ENDPOINT: ENDPOINT,
-    get: get,
-    post: post };
-
+    ENDPOINT,
+    get,
+    post
+  };
 };
